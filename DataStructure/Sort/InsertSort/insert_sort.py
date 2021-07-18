@@ -5,8 +5,8 @@ Author: lanyongliang
 Email: lanyongliang@xdf.cn
 Date: 2021-07-16 17:52:54
 LastEditors: Please set LastEditors
-LastEditTime: 2021-07-18 22:48:06
-FilePath: /undefined/Users/xdf/Desktop/projects/python/insert_sort.py
+LastEditTime: 2021-07-18 23:02:15
+FilePath: /AlgorithmPractice/DataStructure/Sort/InsertSort/insert_sort.py
 '''
 
 import random
@@ -59,7 +59,7 @@ random_num = [random.randint(i, 100)
 # random_num = list(range(15)).sort()
 
 
-insert_sost = InsertSort(inverse=False)
+insert_sost = InsertSort(inverse=True)
 print("input data :{}\n".format(random_num))
 insert_sorted = insert_sost(random_num)
 
