@@ -3,8 +3,8 @@ Author: lanyongliang
 Email: lanyongliang@xdf.cn
 Date: 2021-07-18 23:02:52
 LastEditors: Please set LastEditors
-LastEditTime: 2021-07-18 23:49:54
-FilePath: /AlgorithmPractice/DataStructure/Sort/QuickSort/quick_sort.py
+LastEditTime: 2021-07-21 01:41:10
+FilePath: \AlgorithmPractice\DataStructure\Sort\QuickSort\quick_sort.py
 '''
 
 import random
@@ -14,46 +14,46 @@ class QuickSort(object):
 		self.inverse = inverse
 	
 	def __call__(self, disorder):
-		output = self.sort(disorder)
-
-	def sort_sub_disorder(self, recoder_idx, disorder):
-		recoder = disorder[recoder_idx] 
 		length = len(disorder)
-	
-		for i range(0,length,1):   
-			if not self.inverse:
-				if disorder[i] > recoder:
-					temp = disorder[i]
-					disorder[i] = recoder
-					disorder[recoder_idx] = temp
-					recoder = disorder[i]
-					recoder_idx = i   
-				else:
-					continue
-			else:
-				if disorder[i] > recoder:
-					continue
-				else:
-					temp = disorder[i]
-					disorder[i] = recoder
-					disorder[recoder_idx] = temp
-					recoder = disorder[i]
-					recoder_idx = i  
-		return disorder
-		
-	def sort(self, disorder):
-		lenght = len(disorder)
-		recoder_idx = lenght // 2
-
-		left_disorder = disorder[:recoder_idx]
-		right_disorder = disorder[recoder_idx:]
-		while len(disorder) > 1:
-			recoder_idx = self.sort_sub_disorder(recoder_idx, disorder[:recoder_idx])
-			left_disorder = disorder[:recoder_idx]
-			right_disorder = disorder[recoder_idx:]
-			order = self.sort(left_disorder)
-			
+		self.sort(disorder, 0, length-1)
 
 
-		return order
+	def partion(self, disorder, left, right, inverse=False):
 
+		recoder_idx = left
+		recoder = disorder[recoder_idx]
+		if not inverse:
+			while(left < right):
+				while(left < right and recoder <= disorder[right]):
+					right -=1
+				# temp = recoder
+				disorder[left] = disorder[right]
+				# right -=1
+
+				while(left < right and recoder >= disorder[left]):
+					left +=1
+					recoder_idx = left
+				# temp = disorder[left]
+				# disorder[left] = recoder
+				disorder[right] = disorder[left]
+			disorder[recoder_idx] = recoder
+
+		# else:
+
+		return recoder_idx
+
+	def sort(self, disorder, left, right):
+		if left < right -1:
+			recoder_idx = self.partion(disorder, left, right)
+			print("recoder:{}".format(recoder_idx))
+			self.sort(disorder, left, recoder_idx-1)
+			self.sort(disorder, recoder_idx+1, right )
+		else:
+			return disorder
+
+random_num = [random.randint(i, 100)
+              for i in range(random.randint(8,12))]
+quick_sost = QuickSort(inverse=False)
+print("input data :{}\n".format(random_num))
+quick_sost(random_num)
+print("sorted: {}".format(random_num))

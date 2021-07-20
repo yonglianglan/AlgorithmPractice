@@ -5,8 +5,8 @@ Author: lanyongliang
 Email: lanyongliang@xdf.cn
 Date: 2021-07-16 17:52:54
 LastEditors: Please set LastEditors
-LastEditTime: 2021-07-18 23:02:15
-FilePath: /AlgorithmPractice/DataStructure/Sort/InsertSort/insert_sort.py
+LastEditTime: 2021-07-20 22:10:40
+FilePath: \AlgorithmPractice\DataStructure\Sort\InsertSort\insert_sort.py
 '''
 
 import random
@@ -25,8 +25,7 @@ class InsertSort(object):
         self.inverse = inverse
 
     def __call__(self, input):
-        output = self.insert_sort(input)
-        return output
+        self.insert_sort(input)
 
     def insert_sort(self, input):
         length = len(input)
@@ -49,18 +48,10 @@ class InsertSort(object):
                         input[i-j] = temp
                     else:
                         continue
-        return input
 
-
-# random.seed(123)
 random_num = [random.randint(i, 100)
               for i in range(random.randint(10, 30))]
-
-# random_num = list(range(15)).sort()
-
-
 insert_sost = InsertSort(inverse=True)
 print("input data :{}\n".format(random_num))
-insert_sorted = insert_sost(random_num)
-
-print("sorted: {}".format(insert_sorted))
+insert_sost(random_num)
+print("sorted: {}".format(random_num))
